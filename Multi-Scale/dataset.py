@@ -10,7 +10,10 @@ class NYUDataset(torch.utils.data.Dataset):
         self.tfms = tfms
         
         self.ds_v_1 = h5py.File(self.data_dir+'nyu_depth_data_labeled.mat')
-        self.ds_v_2 = h5py.File(self.data_dir+'nyu_depth_v2_labeled.mat')
+        self.ds_v_2 = h5py.File(self.data_dir+'nyu_depth_data_labeled.mat')
+        # We sample from the first 200 images only so we don't really need the v2 dataset, just a waste of space.
+        # Edited this to ignore the other file so we don't get a file missing error.
+        # h5py.File(self.data_dir+'nyu_depth_v2_labeled.mat')
         
         self.len = len(self.ds_v_1["images"]) + len(self.ds_v_2["images"])
 
